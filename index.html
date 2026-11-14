@@ -2,7 +2,10 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0284c7">
   <title>לומדים אנגלית בכיף - כיתה ד'</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -17,15 +20,15 @@
     }
   </style>
 </head>
-<body class="p-4 md:p-6 text-slate-800 select-none">
+<body class="p-3 md:p-6 text-slate-800 select-none">
 
   <!-- Header -->
-  <header class="max-w-5xl mx-auto bg-white rounded-3xl shadow-lg p-4 md:p-6 mb-6 flex flex-wrap items-center justify-between gap-4 border-4 border-sky-300">
+  <header class="max-w-5xl mx-auto bg-white rounded-3xl shadow-lg p-4 md:p-6 mb-5 flex flex-wrap items-center justify-between gap-4 border-4 border-sky-300">
     <div class="flex items-center gap-3">
       <span class="text-4xl">🎒</span>
       <div>
         <h1 class="text-2xl md:text-3xl font-bold text-sky-700">לומדים אנגלית בכיף!</h1>
-        <p class="text-sm text-slate-500">מערכת אינטראקטיבית לכיתה ד' - אותיות, ימים, מאכלים ומשפטים</p>
+        <p class="text-sm text-slate-500">מערכת אינטראקטיבית לכיתה ד' - אותיות, מאכלים, צלילי C/CH וימים</p>
       </div>
     </div>
 
@@ -45,20 +48,23 @@
   </header>
 
   <!-- Navigation Tabs -->
-  <nav class="max-w-5xl mx-auto flex flex-wrap gap-2 mb-6 justify-center">
-    <button onclick="switchTab('abc')" id="tab-abc" class="tab-btn bg-sky-600 text-white font-bold px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2">
-      <span>🔤</span> האלפבית (A-Z)
+  <nav class="max-w-5xl mx-auto flex flex-wrap gap-2 mb-5 justify-center">
+    <button onclick="switchTab('abc')" id="tab-abc" class="tab-btn bg-white text-slate-700 hover:bg-sky-50 font-bold px-4 py-2.5 rounded-2xl shadow-md transition flex items-center gap-1.5">
+      <span>🔤</span> האלפבית
     </button>
-    <button onclick="switchTab('food')" id="tab-food" class="tab-btn bg-white text-slate-700 hover:bg-sky-50 font-bold px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2 border-2 border-orange-300">
-      <span>🍔</span> אוכל ומשפטים (I want)
+    <button onclick="switchTab('food')" id="tab-food" class="tab-btn bg-white text-slate-700 hover:bg-sky-50 font-bold px-4 py-2.5 rounded-2xl shadow-md transition flex items-center gap-1.5">
+      <span>🍔</span> אוכל והצלחת של מקס
     </button>
-    <button onclick="switchTab('days')" id="tab-days" class="tab-btn bg-white text-slate-700 hover:bg-sky-50 font-bold px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2">
+    <button onclick="switchTab('phonics')" id="tab-phonics" class="tab-btn bg-sky-600 text-white font-bold px-4 py-2.5 rounded-2xl shadow-md transition flex items-center gap-1.5">
+      <span>🎨</span> צלילי C / CH וצביעה
+    </button>
+    <button onclick="switchTab('days')" id="tab-days" class="tab-btn bg-white text-slate-700 hover:bg-sky-50 font-bold px-4 py-2.5 rounded-2xl shadow-md transition flex items-center gap-1.5">
       <span>📅</span> ימי השבוע
     </button>
-    <button onclick="switchTab('trace')" id="tab-trace" class="tab-btn bg-white text-slate-700 hover:bg-sky-50 font-bold px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2">
+    <button onclick="switchTab('trace')" id="tab-trace" class="tab-btn bg-white text-slate-700 hover:bg-sky-50 font-bold px-4 py-2.5 rounded-2xl shadow-md transition flex items-center gap-1.5">
       <span>✏️</span> לוח כתיבה
     </button>
-    <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn bg-white text-slate-700 hover:bg-sky-50 font-bold px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2">
+    <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn bg-white text-slate-700 hover:bg-sky-50 font-bold px-4 py-2.5 rounded-2xl shadow-md transition flex items-center gap-1.5">
       <span>🏆</span> חידון אלופים
     </button>
   </nav>
@@ -67,7 +73,7 @@
   <div id="audioStatus" class="max-w-5xl mx-auto mb-4 hidden">
     <div class="bg-emerald-50 border border-emerald-300 text-emerald-800 px-4 py-2 rounded-xl text-sm flex items-center justify-between">
       <span id="audioStatusText">🔊 משמיע...</span>
-      <span class="text-xs text-emerald-600">מנוע שמע היברידי פעיל</span>
+      <span class="text-xs text-emerald-600">מנוע שמע פעיל</span>
     </div>
   </div>
 
@@ -75,7 +81,7 @@
   <main class="max-w-5xl mx-auto">
 
     <!-- SECTION 1: ALPHABET -->
-    <section id="sec-abc" class="space-y-6">
+    <section id="sec-abc" class="hidden space-y-6">
       <div class="bg-white rounded-3xl shadow-lg p-5 border-2 border-sky-200">
         <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
           <h2 class="text-xl font-bold text-slate-700">לחצי על אות כדי לשמוע וללמוד:</h2>
@@ -86,57 +92,50 @@
         </div>
         <div id="alphabetGrid" class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-9 gap-2.5" dir="ltr"></div>
       </div>
-
-      <!-- Selected Letter Card -->
       <div id="letterDetail" class="bg-white rounded-3xl shadow-xl p-6 border-4 border-amber-300"></div>
     </section>
 
-    <!-- SECTION 2: FOOD & SENTENCES (Exercise 22) -->
+    <!-- SECTION 2: FOOD, "I WANT" & MAX'S PLATE (Exercises 22 & 14) -->
     <section id="sec-food" class="hidden space-y-6">
-      <!-- Interactive Sentence Builder -->
+      <!-- Part A: I want Sentence Builder (Exercise 22) -->
       <div class="bg-white rounded-3xl shadow-xl p-6 border-4 border-orange-300">
         <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
           <div>
             <h2 class="text-2xl font-bold text-orange-800">🍽️ בונים משפטים עם מאכלים (Exercise 22)</h2>
             <p class="text-sm text-slate-600">בחרי פעולה (כמו <strong>I want</strong>) ולחצי על מאכל בבועת המחשבה כדי לבנות משפט ולשמוע אותו!</p>
           </div>
-          <span class="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1.5 rounded-full border border-orange-300">מותאם לחוברת הלימוד</span>
+          <span class="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1.5 rounded-full border border-orange-300">עמודים 22 + 14</span>
         </div>
 
-        <!-- Step 1: Verb / Action Picker -->
         <div class="mb-5">
           <p class="text-sm font-bold text-slate-700 mb-2">1. בחרי התחלה למשפט (פעולה):</p>
           <div id="verbList" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
         </div>
 
-        <!-- Step 2: Thought Bubble Food Grid -->
         <div class="relative bg-gradient-to-b from-sky-50 to-amber-50/60 rounded-3xl p-5 border-4 border-dashed border-sky-300 mb-6">
           <div class="flex items-center justify-between mb-3">
-            <span class="text-sm font-bold text-sky-900">💭 2. מה מתחשק לך? לחצי על מאכל בבועת המחשבה:</span>
+            <span class="text-sm font-bold text-sky-900">💭 2. לחצי על מאכל בבועת המחשבה:</span>
             <span class="text-2xl">🧑‍🎓💭</span>
           </div>
-          <div id="foodGrid" class="grid grid-cols-2 sm:grid-cols-5 gap-3"></div>
+          <div id="foodGrid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3"></div>
         </div>
 
-        <!-- Live Sentence Strip (Notebook Style) -->
         <div class="bg-amber-50/70 rounded-2xl p-5 border-2 border-amber-300 shadow-inner">
-          <p class="text-xs font-bold text-slate-500 mb-2">המשפט שבנית (לחצי על הכפתור להשמעה):</p>
           <div class="flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="text-center md:text-left flex-1" dir="ltr">
               <p id="sentenceEn" class="en-font text-3xl md:text-4xl font-bold text-slate-800 tracking-wide border-b-2 border-dashed border-sky-400 pb-2 inline-block">
                 <span class="text-sky-600">I want</span> <span class="text-orange-600">chocolate</span>.
               </p>
-              <div class="mt-2 flex flex-wrap gap-4 justify-center md:justify-start text-sm" dir="rtl">
+              <div class="mt-2 flex flex-wrap gap-3 justify-center md:justify-start text-sm" dir="rtl">
                 <span id="sentenceTr" class="font-bold text-sky-800 bg-sky-100 px-3 py-1 rounded-lg">איך אומרים: אַיי ווֹנְט צ'וֹקְלֵט</span>
                 <span id="sentenceHe" class="font-bold text-orange-800 bg-orange-100 px-3 py-1 rounded-lg">פירוש: אני רוצה שוקולד 🍫</span>
               </div>
             </div>
-
             <div class="flex items-center gap-2">
-              <button onclick="speakCurrentSentence()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3.5 rounded-2xl shadow-lg transition flex items-center gap-2 text-lg active:scale-95">
+              <button onclick="speakCurrentSentence()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-5 py-3 rounded-2xl shadow-lg transition flex items-center gap-2 text-lg active:scale-95">
                 <span>🔊</span> השמע משפט
               </button>
-              <button onclick="sendSentenceToTrace()" class="bg-sky-100 hover:bg-sky-200 text-sky-800 font-bold px-4 py-3.5 rounded-2xl border-2 border-sky-300 transition text-sm">
+              <button onclick="sendSentenceToTrace()" class="bg-sky-100 hover:bg-sky-200 text-sky-800 font-bold px-4 py-3 rounded-2xl border-2 border-sky-300 transition text-sm">
                 ✏️ תרגלי כתיבה
               </button>
             </div>
@@ -144,20 +143,136 @@
         </div>
       </div>
 
-      <!-- Interactive Exercise 22 Worksheet Practice -->
-      <div class="bg-white rounded-3xl shadow-lg p-6 border-2 border-emerald-300">
-        <div class="flex items-center justify-between mb-3">
+      <!-- Part B: What is Max Eating? (Exercise 14) -->
+      <div class="bg-white rounded-3xl shadow-xl p-6 border-4 border-indigo-300">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
           <div>
-            <h3 class="text-xl font-bold text-emerald-900">📝 תרגיל כתיבה והשלמה (כמו בעמוד החוברת!)</h3>
-            <p class="text-sm text-slate-600">השלימי את המילה החסרה במשפט לפי התמונה כדי לתרגל איות נכון:</p>
+            <h2 class="text-2xl font-bold text-indigo-900">👦🍽️ מה מקס אוכל? – What is Max Eating? (Exercise 14)</h2>
+            <p class="text-sm text-slate-600">בחרי <strong>4 מאכלים</strong> כדי להדביק בצלחת של מקס ולהשלים את המשפט הארוך עם <strong>and</strong>!</p>
           </div>
-          <button onclick="loadFoodFillTask()" class="bg-emerald-100 hover:bg-emerald-200 text-emerald-800 font-bold px-4 py-2 rounded-xl text-sm">משפט אחר 🔄</button>
+          <button onclick="clearMaxPlate()" class="bg-rose-100 hover:bg-rose-200 text-rose-700 font-bold px-4 py-2 rounded-xl text-sm">🧹 נקה צלחת</button>
         </div>
-        <div id="foodWorksheetBox" class="bg-slate-50 rounded-2xl p-5 border-2 border-slate-200"></div>
+
+        <!-- Food Cutouts Pool -->
+        <p class="text-xs font-bold text-slate-500 mb-2">גזירים לבחירה (לחצי על 4 מאכלים):</p>
+        <div id="maxFoodPool" class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-2 mb-6" dir="ltr"></div>
+
+        <!-- Max and the Giant Plate -->
+        <div class="flex flex-col items-center justify-center my-4">
+          <div class="text-6xl mb-[-14px] z-10">👦</div>
+          <div id="maxPlate" class="w-full max-w-xl min-h-[130px] bg-gradient-to-b from-slate-50 to-slate-100 rounded-full border-8 border-slate-300 shadow-inner flex flex-wrap items-center justify-center gap-4 p-4">
+            <span class="text-slate-400 font-bold text-sm">הצלחת של מקס ריקה – לחצי על 4 מאכלים למעלה!</span>
+          </div>
+        </div>
+
+        <!-- Max's Completed Sentence -->
+        <div class="bg-indigo-50 rounded-2xl p-5 border-2 border-indigo-200 mt-4 text-center">
+          <p id="maxSentenceEn" class="en-font text-2xl md:text-3xl font-bold text-indigo-950 tracking-wide" dir="ltr">
+            Max is eating _____, _____, _____ and _____.
+          </p>
+          <p id="maxSentenceHe" class="text-sm font-bold text-indigo-700 mt-2">בחרי 4 מאכלים כדי לשמוע את המשפט המלא!</p>
+          <div class="mt-4 flex justify-center gap-3">
+            <button onclick="speakMaxSentence()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl shadow transition flex items-center gap-2">
+              <span>🔊</span> השמע מה מקס אוכל
+            </button>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- SECTION 3: DAYS OF THE WEEK -->
+    <!-- SECTION 3: PHONICS C (/k/ vs /s/) & CH PYRAMID + COLORING (Exercises 47 & 2) -->
+    <section id="sec-phonics" class="space-y-6">
+
+      <!-- Part 1: Exercise 47 - Sound of Letter C (/k/ vs /s/) -->
+      <div class="bg-white rounded-3xl shadow-xl p-6 border-4 border-teal-300">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <div>
+            <h2 class="text-2xl font-bold text-teal-900">🔤 צלילי האות C: מתי /k/ ומתי /s/? (Exercise 47)</h2>
+            <p class="text-sm text-slate-600">לחצי על כל מילה כדי לשמוע אותה, ובדקי אם האות <strong>c</strong> נשמעת כמו <strong>ק' (/k/)</strong> או כמו <strong>ס' (/s/)</strong>!</p>
+          </div>
+          <span class="bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1.5 rounded-full border border-teal-300">Exercise 47</span>
+        </div>
+
+        <!-- Golden Rule Tip -->
+        <div class="bg-amber-50 border-2 border-amber-300 rounded-2xl p-4 mb-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span class="text-3xl">💡</span>
+            <div class="text-sm">
+              <p class="font-bold text-amber-900">כלל הקסם של האות C:</p>
+              <p class="text-slate-700">כשאחרי <strong>C</strong> מופיעות האותיות <strong>e, i, y</strong> היא נשמעת כמו <strong>ס' (/s/)</strong> (כמו ב-fa<strong>ce</strong>, <strong>ci</strong>rcle). בכל שאר המקרים היא נשמעת כמו <strong>ק' (/k/)</strong> (כמו ב-<strong>c</strong>at, <strong>c</strong>ake)!</p>
+            </div>
+          </div>
+          <button onclick="resetCSortGame()" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-4 py-2 rounded-xl text-xs shrink-0">איפוס תרגיל 🔄</button>
+        </div>
+
+        <!-- 12 Words Grid from Exercise 47 -->
+        <div id="cWordsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-6" dir="ltr"></div>
+
+        <!-- Two Columns Table (/k/ and /s/) & "Which words appear twice?" -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" dir="ltr">
+          <div class="bg-sky-50 rounded-2xl p-4 border-2 border-sky-300">
+            <h3 class="en-font text-2xl font-bold text-sky-900 text-center border-b-2 border-sky-200 pb-2 mb-3">/k/ (צליל ק')</h3>
+            <div id="colK" class="flex flex-wrap gap-2 justify-center min-h-[48px]"></div>
+          </div>
+          <div class="bg-rose-50 rounded-2xl p-4 border-2 border-rose-300">
+            <h3 class="en-font text-2xl font-bold text-rose-900 text-center border-b-2 border-rose-200 pb-2 mb-3">/s/ (צליל ס')</h3>
+            <div id="colS" class="flex flex-wrap gap-2 justify-center min-h-[48px]"></div>
+          </div>
+        </div>
+
+        <!-- Special Question from Bottom of Page 47 -->
+        <div class="mt-4 bg-purple-50 border-2 border-purple-200 rounded-2xl p-4 text-sm flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <span class="font-bold text-purple-900">❓ שאלת החוברת: אילו מילים מופיעות פעמיים (גם בעמודת /k/ וגם בעמודת /s/)?</span>
+            <p class="text-slate-700 mt-1">המילים <strong class="en-font">ice-cream</strong> ו-<strong class="en-font">circle</strong>! כי יש בהן שתי אותיות <strong>c</strong> – אחת שנשמעת כמו <strong>/s/</strong> ואחת שנשמעת כמו <strong>/k/</strong>!</p>
+          </div>
+          <button onclick="speakText('ice cream, circle')" class="bg-purple-600 text-white font-bold px-4 py-2 rounded-xl">🔊 השמע אותן</button>
+        </div>
+      </div>
+
+      <!-- Part 2: Exercise 2 - The "ch" Pyramid & Coloring Game -->
+      <div class="bg-white rounded-3xl shadow-xl p-6 border-4 border-amber-300">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <div>
+            <h2 class="text-2xl font-bold text-amber-900">🔺 פירמידת הצליל CH ומשחק צביעה! (Exercise 2)</h2>
+            <p class="text-sm text-slate-600">האותיות <strong>ch</strong> יחד עושות צליל <strong>צ'</strong> (כמו ב-<strong>ch</strong>ips, <strong>ch</strong>eese, sandwi<strong>ch</strong>)!</p>
+          </div>
+          <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-full border border-amber-300">Exercise 2</span>
+        </div>
+
+        <!-- Interactive CH Pyramid -->
+        <div class="bg-gradient-to-b from-amber-50 to-orange-50 rounded-3xl p-5 border-2 border-amber-200 mb-6">
+          <p class="text-center text-sm font-bold text-amber-900 mb-3">לחצי על כל קומה בפירמידה כדי לשמוע את המילה ולראות איפה מסתתר ה-<span class="en-font underline">ch</span>:</p>
+          <div class="flex flex-col items-center space-y-2 max-w-xl mx-auto" dir="ltr">
+            <div onclick="speakText('ch')" class="cursor-pointer bg-amber-300 hover:bg-amber-400 text-amber-950 en-font font-bold text-3xl px-8 py-2 rounded-t-3xl border-2 border-amber-500 shadow">
+              ch
+            </div>
+            <div id="chPyramidRows" class="w-full flex flex-col items-center space-y-2"></div>
+          </div>
+        </div>
+
+        <!-- Section 3 of Exercise 2: Read the instructions and color the pictures -->
+        <div class="bg-slate-50 rounded-3xl p-5 border-2 border-slate-200">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="text-xl font-bold text-slate-800">🎨 קראי את ההוראות וצבעי את התמונות! (Read and Color)</h3>
+              <p class="text-sm text-slate-600">1. בחרי צבע מהפלטה למטה &nbsp;👈&nbsp; 2. לחצי על הציור המתאים לפי ההוראה באנגלית!</p>
+            </div>
+            <button onclick="resetColoringGame()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-4 py-2 rounded-xl text-xs">נקה צבעים 🔄</button>
+          </div>
+
+          <!-- Color Palette Picker -->
+          <div id="colorPalette" class="flex flex-wrap items-center justify-center gap-3 mb-6 bg-white p-3 rounded-2xl border-2 border-slate-200 shadow-sm"></div>
+
+          <!-- 6 Coloring Instructions & Cards -->
+          <div id="coloringTasksGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4" dir="ltr"></div>
+          <p id="coloringFeedback" class="mt-4 font-bold text-center text-lg"></p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SECTION 4: DAYS OF THE WEEK -->
     <section id="sec-days" class="hidden space-y-6">
       <div class="bg-white rounded-3xl shadow-lg p-6 border-2 border-purple-200">
         <h2 class="text-2xl font-bold text-purple-800 mb-2">📅 ימי השבוע באנגלית (Days of the Week)</h2>
@@ -178,18 +293,19 @@
       </div>
     </section>
 
-    <!-- SECTION 4: TRACING PAD -->
+    <!-- SECTION 5: TRACING PAD -->
     <section id="sec-trace" class="hidden">
       <div class="bg-white rounded-3xl shadow-lg p-6 border-2 border-emerald-300">
         <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
           <div>
-            <h2 class="text-2xl font-bold text-emerald-800">✏️ לוח תרגול כתיבה (אותיות ומשפטי I want)</h2>
-            <p class="text-sm text-slate-500">בחרי אות או משפט מהחוברת ועברי עליהם עם העכבר או האצבע</p>
+            <h2 class="text-2xl font-bold text-emerald-800">✏️ לוח תרגול כתיבה (אותיות, מילים ומשפטים)</h2>
+            <p class="text-sm text-slate-500">בחרי אות, מילה מדפי העבודה או משפט ועברי עליהם עם האצבע או העכבר</p>
           </div>
           <div class="flex flex-wrap items-center gap-2">
             <select id="traceModeSelect" onchange="updateTraceOptions()" class="font-bold bg-sky-50 border-2 border-sky-400 rounded-xl px-3 py-2 text-sm">
               <option value="letters">🔤 אותיות A-Z</option>
-              <option value="sentences">🍔 משפטי I want (מתרגיל 22)</option>
+              <option value="ch_c">🎨 מילים עם C ו-CH (דפים 2 ו-47)</option>
+              <option value="sentences">🍔 משפטי אוכל (דפים 14 ו-22)</option>
             </select>
             <select id="traceLetterSelect" onchange="drawTraceGuide()" class="en-font text-lg font-bold bg-emerald-50 border-2 border-emerald-400 rounded-xl px-4 py-2"></select>
             <button onclick="speakCurrentTraceItem()" class="bg-sky-500 hover:bg-sky-600 text-white font-bold px-4 py-2 rounded-xl">🔊 השמע</button>
@@ -202,11 +318,11 @@
       </div>
     </section>
 
-    <!-- SECTION 5: QUIZ -->
+    <!-- SECTION 6: QUIZ -->
     <section id="sec-quiz" class="hidden">
       <div class="bg-white rounded-3xl shadow-lg p-6 md:p-8 border-4 border-sky-300 text-center max-w-2xl mx-auto">
         <h2 class="text-2xl font-bold text-sky-800 mb-2">🏆 חידון אלופי האנגלית!</h2>
-        <p id="quizScoreText" class="text-slate-500 mb-6">שאלות על אותיות, ימי השבוע והמאכלים מתרגיל 22!</p>
+        <p id="quizScoreText" class="text-slate-500 mb-6">שאלות על כל החומר: אותיות, ימים, מאכלים, צלילי C/CH וצבעים!</p>
         <div id="quizBox" class="space-y-6"></div>
       </div>
     </section>
@@ -244,36 +360,81 @@
       { l: 'Z', name: 'זִי / זֶד', sound: 'זְ', vowel: false, w1: { en: 'Zebra', he: 'זברה', tr: 'זֶבְּרָה', em: '🦓' }, w2: { en: 'Zoo', he: 'גן חיות', tr: 'זוּ', em: '🦁' } }
     ];
 
-    // --- DATA: FOOD & ACTIONS FROM WORKBOOK IMAGE (Exercise 22) ---
+    // --- DATA: FOOD & ACTIONS (Exercises 22, 14, 2) ---
     const verbsData = [
       { en: 'I want', he: 'אני רוצה', tr: 'אַיי ווֹנְט', em: '🤲' },
       { en: 'I like', he: 'אני אוהב/ת', tr: 'אַיי לַייק', em: '❤️' },
       { en: 'I eat', he: 'אני אוכל/ת', tr: 'אַיי אִיט', em: '😋' },
-      { en: 'I see', he: 'אני רואה', tr: 'אַיי סִי', em: '👀' }
+      { en: 'Max is eating', he: 'מקס אוכל', tr: 'מַקְס אִיז אִיטִינְג', em: '👦' }
     ];
 
     const foodData = [
-      { en: 'chocolate', he: 'שוקולד', tr: 'צ\'וֹקְלֵט', em: '🍫', tip: 'מתחיל ב-ch שנשמע כמו צ\'' },
-      { en: 'cookies', he: 'עוגיות', tr: 'קוּקִיז', em: '🍪', tip: 'ברבים מוסיפים s בסוף!' },
-      { en: 'cake', he: 'עוגה', tr: 'קֵייק', em: '🍰', tip: 'האות e בסוף שקטה' },
-      { en: 'ice cream', he: 'גלידה', tr: 'אַייס קְרִים', em: '🍦', tip: 'שתי מילים: קרח + שמנת' },
-      { en: 'cheese', he: 'גבינה', tr: 'צ\'ִיז', em: '🧀', tip: 'ee באמצע עושה צליל אִי ארוך' },
-      { en: 'chicken', he: 'עוף', tr: 'צ\'ִיקֶן', em: '🍗', tip: 'מתחיל ב-ch כמו chocolate ו-cheese' },
-      { en: 'plums', he: 'שזיפים', tr: 'פְּלַאמְז', em: '🟣', tip: 'plum = שזיף אחד, plums = שזיפים' },
-      { en: 'chips', he: 'צ\'יפס', tr: 'צ\'ִיפְּס', em: '🍟', tip: 'נקרא גם French fries!' },
-      { en: 'pizza', he: 'פיצה', tr: 'פִּיצָה', em: '🍕', tip: 'אותה מילה בדיוק כמו בעברית!' },
-      { en: 'fish', he: 'דג', tr: 'פִישׁ', em: '🐟', tip: 'sh בסוף עושה צליל שְׁ' }
+      { en: 'chocolate', he: 'שוקולד', tr: 'צ\'וֹקְלֵט', em: '🍫', inMaxPage: true },
+      { en: 'cookies', he: 'עוגיות', tr: 'קוּקִיז', em: '🍪', inMaxPage: true },
+      { en: 'cake', he: 'עוגה', tr: 'קֵייק', em: '🎂', inMaxPage: true },
+      { en: 'ice-cream', he: 'גלידה', tr: 'אַייס-קְרִים', em: '🍦', inMaxPage: true },
+      { en: 'cheese', he: 'גבינה', tr: 'צ\'ִיז', em: '🧀', inMaxPage: false },
+      { en: 'chicken', he: 'עוף', tr: 'צ\'ִיקֶן', em: '🍗', inMaxPage: true },
+      { en: 'plums', he: 'שזיפים', tr: 'פְּלַאמְז', em: '🟣', inMaxPage: true },
+      { en: 'chips', he: 'צ\'יפס', tr: 'צ\'ִיפְּס', em: '🍟', inMaxPage: true },
+      { en: 'pizza', he: 'פיצה', tr: 'פִּיצָה', em: '🍕', inMaxPage: true },
+      { en: 'salad', he: 'סלט', tr: 'סַלַאד', em: '🥗', inMaxPage: true },
+      { en: 'sandwich', he: 'כריך (סנדוויץ\')', tr: 'סֶנְדְווִיץ\'', em: '🥪', inMaxPage: false },
+      { en: 'fish', he: 'דג', tr: 'פִישׁ', em: '🐟', inMaxPage: false }
+    ];
+
+    // --- DATA: EXERCISE 47 - C SOUNDS (/k/ vs /s/) ---
+    const cWordsData = [
+      { word: 'crayon', html: '<u>c</u>rayon', he: 'צבע פנדה', tr: 'קְרֵייאוֹן', em: '🖍️', ans: 'k', both: false },
+      { word: 'face', html: 'fa<u>c</u>e', he: 'פנים', tr: 'פֵייס', em: '🙂', ans: 's', both: false },
+      { word: 'cup', html: '<u>c</u>up', he: 'כוס / ספל', tr: 'קַאפּ', em: '☕', ans: 'k', both: false },
+      { word: 'camel', html: '<u>c</u>amel', he: 'גמל', tr: 'קַאמֶל', em: '🐪', ans: 'k', both: false },
+      { word: 'cola', html: '<u>c</u>ola', he: 'קולה', tr: 'קוֹלָה', em: '🥤', ans: 'k', both: false },
+      { word: 'pencil', html: 'pen<u>c</u>il', he: 'עיפרון', tr: 'פֶּנְסִיל', em: '✏️', ans: 's', both: false },
+      { word: 'cookies', html: '<u>c</u>ookies', he: 'עוגיות', tr: 'קוּקִיז', em: '🍪', ans: 'k', both: false },
+      { word: 'cat', html: '<u>c</u>at', he: 'חתול', tr: 'קֶט', em: '🐱', ans: 'k', both: false },
+      { word: 'cake', html: '<u>c</u>ake', he: 'עוגה', tr: 'קֵייק', em: '🍰', ans: 'k', both: false },
+      { word: 'cactus', html: '<u>c</u>a<u>c</u>tus', he: 'קקטוס', tr: 'קַקְטוּס', em: '🌵', ans: 'k', both: false },
+      { word: 'ice-cream', html: 'i<u>c</u>e-<u>c</u>ream', he: 'גלידה (2 צלילים!)', tr: 'אַייס-קְרִים', em: '🍦', ans: 's / k', both: true },
+      { word: 'circle', html: '<u>c</u>ir<u>c</u>le', he: 'עיגול (2 צלילים!)', tr: 'סֵירְקֶל', em: '⭕', ans: 's / k', both: true }
+    ];
+
+    // --- DATA: EXERCISE 2 - CH PYRAMID & COLORING ---
+    const chPyramidData = [
+      { word: 'chips', html: '<span class="text-rose-600 underline">ch</span>ips', he: 'צ\'יפס', tr: 'צ\'ִיפְּס', em: '🍟', width: 'w-48' },
+      { word: 'chair', html: '<span class="text-rose-600 underline">ch</span>air', he: 'כיסא', tr: 'צֵ\'אר', em: '🪑', width: 'w-56' },
+      { word: 'cheese', html: '<span class="text-rose-600 underline">ch</span>eese', he: 'גבינה', tr: 'צ\'ִיז', em: '🧀', width: 'w-64' },
+      { word: 'chicken', html: '<span class="text-rose-600 underline">ch</span>icken', he: 'עוף', tr: 'צ\'ִיקֶן', em: '🍗', width: 'w-72' },
+      { word: 'sandwich', html: 'sandwi<span class="text-rose-600 underline">ch</span>', he: 'כריך', tr: 'סֶנְדְווִיץ\'', em: '🥪', width: 'w-80' },
+      { word: 'chocolate', html: '<span class="text-rose-600 underline">ch</span>ocolate', he: 'שוקולד', tr: 'צ\'וֹקְלֵט', em: '🍫', width: 'w-96 max-w-full' }
+    ];
+
+    const paletteColors = [
+      { id: 'orange', en: 'orange', he: 'כתום', hex: '#fb923c', bgClass: 'bg-orange-200 border-orange-500' },
+      { id: 'yellow', en: 'yellow', he: 'צהוב', hex: '#facc15', bgClass: 'bg-yellow-200 border-yellow-500' },
+      { id: 'green', en: 'green', he: 'ירוק', hex: '#4ade80', bgClass: 'bg-green-200 border-green-500' },
+      { id: 'gray', en: 'gray', he: 'אפור', hex: '#94a3b8', bgClass: 'bg-slate-300 border-slate-500' },
+      { id: 'brown', en: 'brown', he: 'חום', hex: '#a16207', bgClass: 'bg-amber-700/30 border-amber-800' }
+    ];
+
+    const coloringTasks = [
+      { num: 1, item: 'chicken', sentence: 'Color the chicken orange.', he: 'צבעו את העוף בכתום', targetColor: 'orange', em: '🍗' },
+      { num: 2, item: 'cheese', sentence: 'Color the cheese yellow.', he: 'צבעו את הגבינה בצהוב', targetColor: 'yellow', em: '🧀' },
+      { num: 3, item: 'sandwich', sentence: 'Color the sandwich green.', he: 'צבעו את הכריך בירוק', targetColor: 'green', em: '🥪' },
+      { num: 4, item: 'chair', sentence: 'Color the chair gray.', he: 'צבעו את הכיסא באפור', targetColor: 'gray', em: '🪑' },
+      { num: 5, item: 'chocolate', sentence: 'Color the chocolate brown.', he: 'צבעו את השוקולד בחום', targetColor: 'brown', em: '🍫' },
+      { num: 6, item: 'chips', sentence: 'Color the chips yellow.', he: 'צבעו את הצ\'יפס בצהוב', targetColor: 'yellow', em: '🍟' }
     ];
 
     // --- DATA: DAYS ---
     const daysData = [
-      { en: 'Sunday', he: 'יום ראשון', tr: 'סַאנְדֵּיי', em: '☀️', tip: 'מתחיל במילה Sun (שמש) - יום שמשי לפתיחת השבוע!' },
+      { en: 'Sunday', he: 'יום ראשון', tr: 'סַאנְדֵּיי', em: '☀️', tip: 'מתחיל במילה Sun (שמש)!' },
       { en: 'Monday', he: 'יום שני', tr: 'מַאנְדֵּיי', em: '🌙', tip: 'קשור למילה Moon (ירח).' },
-      { en: 'Tuesday', he: 'יום שלישי', tr: 'טְיוּזְדֵּיי', em: '✌️', tip: 'נשמע קצת כמו Two (שתיים) - היום השני בשבוע בחו"ל!' },
-      { en: 'Wednesday', he: 'יום רביעי', tr: 'וֶונְזְדֵּיי', em: '🐪', tip: 'שימי לב! האות d באמצע המילה שקטה ולא שומעים אותה.' },
-      { en: 'Thursday', he: 'יום חמישי', tr: 'ת\'רְזְדֵּיי', em: '⚡', tip: 'מתחיל ב-Th (מוציאים קצת לשון בין השיניים).' },
-      { en: 'Friday', he: 'יום שישי', tr: 'פְרַיידֵּיי', em: '🍟', tip: 'נשמע כמו Fry (צ\'יפס מטוגן) - כיף של סוף שבוע!' },
-      { en: 'Saturday', he: 'יום שבת', tr: 'סֶטֶרְדֵּיי', em: '🪐', tip: 'על שם כוכב הלכת שבתאי (Saturn) - יום מנוחה!' }
+      { en: 'Tuesday', he: 'יום שלישי', tr: 'טְיוּזְדֵּיי', em: '✌️', tip: 'נשמע קצת כמו Two (שתיים)!' },
+      { en: 'Wednesday', he: 'יום רביעי', tr: 'וֶונְזְדֵּיי', em: '🐪', tip: 'האות d באמצע המילה שקטה!' },
+      { en: 'Thursday', he: 'יום חמישי', tr: 'ת\'רְזְדֵּיי', em: '⚡', tip: 'מתחיל ב-Th (לשון בין השיניים).' },
+      { en: 'Friday', he: 'יום שישי', tr: 'פְרַיידֵּיי', em: '🍟', tip: 'נשמע כמו Fry (צ\'יפס מטוגן)!' },
+      { en: 'Saturday', he: 'יום שבת', tr: 'סֶטֶרְדֵּיי', em: '🪐', tip: 'על שם כוכב הלכת שבתאי (Saturn)!' }
     ];
 
     let slowMode = false;
@@ -281,9 +442,13 @@
     let selectedLetterIndex = 0;
     let selectedVerbIndex = 0;
     let selectedFoodIndex = 0;
+    let maxPlateItems = [];
+    let cSortedState = {};
+    let selectedBrushColor = 'orange';
+    let coloredItemsState = {};
     let currentAudio = null;
 
-    // --- SOUND EFFECTS (Web Audio API) ---
+    // --- SOUND EFFECTS ---
     function playDing(success = true) {
       try {
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -315,9 +480,7 @@
 
       const playCloudFallback = () => {
         try {
-          if (currentAudio) {
-            currentAudio.pause();
-          }
+          if (currentAudio) currentAudio.pause();
           const speedParam = slowMode ? '0.24' : '1';
           const url = `https://translate.googleapis.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(text)}&tl=en&client=tw-ob&ttsspeed=${speedParam}`;
           currentAudio = new Audio(url);
@@ -332,17 +495,12 @@
           const utter = new SpeechSynthesisUtterance(text);
           utter.lang = 'en-US';
           utter.rate = slowMode ? 0.6 : 0.9;
-
           let started = false;
           utter.onstart = () => { started = true; };
           utter.onerror = () => { if (!started) playCloudFallback(); };
-
           window.speechSynthesis.speak(utter);
-
           setTimeout(() => {
-            if (!started && !window.speechSynthesis.speaking) {
-              playCloudFallback();
-            }
+            if (!started && !window.speechSynthesis.speaking) playCloudFallback();
           }, 250);
         } catch (e) {
           playCloudFallback();
@@ -364,7 +522,7 @@
       playDing(true);
     }
 
-    // --- RENDER ALPHABET ---
+    // --- SECTION 1: ALPHABET ---
     function renderAlphabet() {
       const grid = document.getElementById('alphabetGrid');
       grid.innerHTML = '';
@@ -398,31 +556,25 @@
               ${item.l}${item.l.toLowerCase()}
             </div>
             <div>
-              <div class="flex items-center gap-2">
-                <h3 class="text-2xl font-bold">האות ${item.l} (${item.name})</h3>
-                <span class="text-xs px-2.5 py-1 rounded-full font-bold ${item.vowel ? 'bg-rose-200 text-rose-800' : 'bg-sky-200 text-sky-800'}">
-                  ${item.vowel ? 'אות ניקוד (Vowel)' : 'עיצור (Consonant)'}
-                </span>
-              </div>
+              <h3 class="text-2xl font-bold">האות ${item.l} (${item.name})</h3>
               <p class="text-slate-600 mt-1 text-lg">הצליל שלה במילה: <strong>${item.sound}</strong></p>
-              <button onclick="speakText('${item.l}')" class="mt-3 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-5 py-2 rounded-xl shadow transition flex items-center gap-2 active:scale-95">
-                <span>🔊</span> השמע את שם האות (${item.l})
+              <button onclick="speakText('${item.l}')" class="mt-3 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-5 py-2 rounded-xl shadow transition flex items-center gap-2">
+                <span>🔊</span> השמע אות
               </button>
             </div>
           </div>
-
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full md:w-auto flex-1 max-w-xl">
             ${[item.w1, item.w2].map(w => `
-              <div onclick="speakText('${w.en}')" class="cursor-pointer bg-slate-50 hover:bg-sky-50 border-2 border-slate-200 hover:border-sky-400 rounded-2xl p-4 flex items-center justify-between transition group">
+              <div onclick="speakText('${w.en}')" class="cursor-pointer bg-slate-50 hover:bg-sky-50 border-2 border-slate-200 rounded-2xl p-4 flex items-center justify-between transition">
                 <div class="flex items-center gap-3">
                   <span class="text-4xl">${w.em}</span>
                   <div>
                     <p class="en-font text-xl font-bold text-slate-800" dir="ltr">${w.en}</p>
-                    <p class="text-sm text-sky-700 font-bold">הגייה: ${w.tr}</p>
-                    <p class="text-sm text-slate-500">פירוש: ${w.he}</p>
+                    <p class="text-sm text-sky-700 font-bold">${w.tr}</p>
+                    <p class="text-sm text-slate-500">${w.he}</p>
                   </div>
                 </div>
-                <span class="text-2xl bg-white p-2 rounded-full shadow group-hover:scale-110 transition">🔊</span>
+                <span class="text-2xl">🔊</span>
               </div>
             `).join('')}
           </div>
@@ -430,35 +582,33 @@
       `;
     }
 
-    // --- RENDER FOOD & SENTENCES (Exercise 22) ---
+    // --- SECTION 2: FOOD & MAX'S PLATE (Exercises 22 & 14) ---
     function renderFoodSection() {
-      // Verbs
       const verbBox = document.getElementById('verbList');
       verbBox.innerHTML = verbsData.map((v, idx) => {
         const active = idx === selectedVerbIndex
-          ? 'bg-sky-600 text-white border-sky-700 ring-4 ring-sky-200 scale-[1.02]'
+          ? 'bg-sky-600 text-white border-sky-700 ring-4 ring-sky-200'
           : 'bg-sky-50 hover:bg-sky-100 text-slate-800 border-sky-200';
         return `
           <button onclick="selectVerb(${idx})" class="p-3 rounded-2xl border-2 transition flex items-center justify-between ${active}">
             <div class="text-right">
-              <p class="en-font text-xl font-bold" dir="ltr">${v.en}</p>
-              <p class="text-xs opacity-90">${v.he} (${v.tr})</p>
+              <p class="en-font text-lg font-bold" dir="ltr">${v.en}</p>
+              <p class="text-xs opacity-90">${v.he}</p>
             </div>
             <span class="text-2xl">${v.em}</span>
           </button>
         `;
       }).join('');
 
-      // Foods
       const foodBox = document.getElementById('foodGrid');
       foodBox.innerHTML = foodData.map((f, idx) => {
         const active = idx === selectedFoodIndex
           ? 'bg-orange-100 border-orange-500 ring-4 ring-orange-200 scale-105 shadow-md'
           : 'bg-white hover:bg-orange-50 border-slate-200';
         return `
-          <button onclick="selectFood(${idx})" class="p-3 rounded-2xl border-2 transition flex flex-col items-center text-center ${active}">
-            <span class="text-4xl mb-1">${f.em}</span>
-            <span class="en-font text-lg font-bold text-slate-800" dir="ltr">${f.en}</span>
+          <button onclick="selectFood(${idx})" class="p-2.5 rounded-2xl border-2 transition flex flex-col items-center text-center ${active}">
+            <span class="text-3xl mb-1">${f.em}</span>
+            <span class="en-font text-base font-bold text-slate-800" dir="ltr">${f.en}</span>
             <span class="text-xs font-bold text-orange-700">${f.tr}</span>
             <span class="text-xs text-slate-500">${f.he}</span>
           </button>
@@ -466,6 +616,7 @@
       }).join('');
 
       updateSentenceBanner();
+      renderMaxPlateSection();
     }
 
     function selectVerb(idx) {
@@ -503,61 +654,225 @@
       updateTraceOptions(fullSentence);
     }
 
-    // --- WORKBOOK FILL-IN TASK ---
-    function loadFoodFillTask() {
-      const box = document.getElementById('foodWorksheetBox');
-      const v = verbsData[Math.floor(Math.random() * 2)]; // Mostly I want / I like
-      const correctFood = foodData[Math.floor(Math.random() * foodData.length)];
-      const options = [
-        correctFood,
-        ...foodData.filter(f => f.en !== correctFood.en).sort(() => Math.random() - 0.5).slice(0, 3)
-      ].sort(() => Math.random() - 0.5);
-
-      box.innerHTML = `
-        <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
-          <div class="flex items-center gap-3">
-            <span class="text-5xl bg-white p-3 rounded-2xl shadow border border-slate-200">${correctFood.em}</span>
-            <div>
-              <p class="text-sm text-slate-500">השלימי את המשפט עבור: <strong>${v.he} ${correctFood.he}</strong></p>
-              <p class="en-font text-2xl md:text-3xl font-bold text-slate-800 mt-1" dir="ltr">
-                ${v.en} <span id="blankSlot" class="text-orange-600 underline decoration-dashed">________</span>.
-              </p>
-            </div>
-          </div>
-          <button onclick="speakText('${v.en} ${correctFood.en}')" class="bg-amber-300 hover:bg-amber-400 text-slate-900 font-bold px-4 py-2 rounded-xl flex items-center gap-2">
-            🔊 רמז קולי
+    // --- MAX'S PLATE (Exercise 14: "What is Max Eating?") ---
+    function renderMaxPlateSection() {
+      const maxFoods = foodData.filter(f => f.inMaxPage);
+      const pool = document.getElementById('maxFoodPool');
+      pool.innerHTML = maxFoods.map(f => {
+        const picked = maxPlateItems.some(item => item.en === f.en);
+        return `
+          <button onclick="toggleMaxFood('${f.en}')" class="p-2 rounded-xl border-2 border-dashed transition flex flex-col items-center ${picked ? 'bg-indigo-100 border-indigo-500 opacity-50' : 'bg-amber-50/60 hover:bg-indigo-50 border-slate-400'}">
+            <span class="text-3xl">${f.em}</span>
+            <span class="en-font text-sm font-bold text-slate-800">${f.en}</span>
+            <span class="text-[11px] text-slate-500">${f.he}</span>
           </button>
-        </div>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" dir="ltr">
-          ${options.map(o => `
-            <button onclick="checkFoodFill(this, '${o.en}', '${correctFood.en}', '${v.en}')" class="en-font bg-white hover:bg-emerald-50 border-2 border-slate-300 font-bold text-xl py-3 rounded-xl shadow-sm transition">
-              ${o.en}
-            </button>
-          `).join('')}
-        </div>
-        <p id="foodFillMsg" class="mt-3 font-bold text-center text-lg"></p>
-      `;
-    }
+        `;
+      }).join('');
 
-    function checkFoodFill(btn, chosen, correct, verbEn) {
-      if (chosen === correct) {
-        document.getElementById('blankSlot').textContent = chosen;
-        btn.className = 'en-font bg-emerald-500 text-white border-2 border-emerald-600 font-bold text-xl py-3 rounded-xl shadow-md';
-        document.getElementById('foodFillMsg').textContent = `🎉 כל הכבוד! "${verbEn} ${correct}." (+1 כוכב)`;
-        document.getElementById('foodFillMsg').className = 'mt-3 font-bold text-center text-lg text-emerald-600';
-        speakText(`${verbEn} ${correct}`);
-        addStars(1);
-        setTimeout(loadFoodFillTask, 1600);
+      const plate = document.getElementById('maxPlate');
+      if (maxPlateItems.length === 0) {
+        plate.innerHTML = `<span class="text-slate-400 font-bold text-sm">הצלחת של מקס ריקה – לחצי על 4 מאכלים למעלה!</span>`;
       } else {
-        playDing(false);
-        speakText(chosen);
-        btn.className = 'en-font bg-rose-500 text-white border-2 border-rose-600 font-bold text-xl py-3 rounded-xl';
-        document.getElementById('foodFillMsg').textContent = 'נסי שוב! הקשיבי לצליל של המילה.';
-        document.getElementById('foodFillMsg').className = 'mt-3 font-bold text-center text-lg text-rose-600';
+        plate.innerHTML = maxPlateItems.map(item => `
+          <div onclick="toggleMaxFood('${item.en}')" class="cursor-pointer bg-white px-3 py-2 rounded-2xl shadow border-2 border-indigo-200 flex items-center gap-2 hover:bg-rose-50 transition" title="לחצי להסרה">
+            <span class="text-3xl">${item.em}</span>
+            <span class="en-font font-bold text-slate-800">${item.en}</span>
+          </div>
+        `).join('');
+      }
+
+      const sentEn = document.getElementById('maxSentenceEn');
+      const sentHe = document.getElementById('maxSentenceHe');
+      const slots = [0, 1, 2, 3].map(i => maxPlateItems[i] ? `<span class="text-indigo-600 underline">${maxPlateItems[i].en}</span>` : '_____');
+      sentEn.innerHTML = `Max is eating ${slots[0]}, ${slots[1]}, ${slots[2]} and ${slots[3]}.`;
+
+      if (maxPlateItems.length === 4) {
+        const heList = maxPlateItems.map(i => i.he);
+        sentHe.textContent = `🎉 מעולה! מקס אוכל ${heList[0]}, ${heList[1]}, ${heList[2]} ו${heList[3]}!`;
+        sentHe.className = 'text-base font-bold text-emerald-600 mt-2';
+      } else {
+        sentHe.textContent = `בחרת ${maxPlateItems.length} מתוך 4 מאכלים לצלחת של מקס.`;
+        sentHe.className = 'text-sm font-bold text-indigo-700 mt-2';
       }
     }
 
-    // --- RENDER DAYS ---
+    function toggleMaxFood(enName) {
+      const idx = maxPlateItems.findIndex(i => i.en === enName);
+      if (idx > -1) {
+        maxPlateItems.splice(idx, 1);
+      } else {
+        if (maxPlateItems.length >= 4) {
+          playDing(false);
+          return;
+        }
+        const f = foodData.find(x => x.en === enName);
+        if (f) {
+          maxPlateItems.push(f);
+          speakText(f.en);
+          if (maxPlateItems.length === 4) {
+            addStars(2);
+            setTimeout(speakMaxSentence, 600);
+          }
+        }
+      }
+      renderMaxPlateSection();
+    }
+
+    function clearMaxPlate() {
+      maxPlateItems = [];
+      renderMaxPlateSection();
+    }
+
+    function speakMaxSentence() {
+      if (maxPlateItems.length === 0) {
+        speakText('What is Max eating?');
+        return;
+      }
+      if (maxPlateItems.length === 4) {
+        const text = `Max is eating ${maxPlateItems[0].en}, ${maxPlateItems[1].en}, ${maxPlateItems[2].en}, and ${maxPlateItems[3].en}.`;
+        speakText(text);
+      } else {
+        const names = maxPlateItems.map(i => i.en).join(', ');
+        speakText(`Max is eating ${names}`);
+      }
+    }
+
+    // --- SECTION 3: PHONICS C (/k/ vs /s/) & CH PYRAMID + COLORING ---
+    function renderPhonicsSection() {
+      // 1. Exercise 47 Grid
+      const grid = document.getElementById('cWordsGrid');
+      grid.innerHTML = cWordsData.map((item, idx) => {
+        const chosen = cSortedState[item.word];
+        const isSolved = chosen === item.ans;
+        return `
+          <div class="bg-slate-50 rounded-2xl p-3.5 border-2 ${isSolved ? 'border-emerald-400 bg-emerald-50/40' : 'border-slate-200'} flex flex-col justify-between gap-2">
+            <div class="flex items-center justify-between">
+              <div onclick="speakText('${item.word}')" class="cursor-pointer flex items-center gap-2.5">
+                <span class="text-3xl">${item.em}</span>
+                <div>
+                  <p class="en-font text-xl font-bold text-slate-800">${item.html}</p>
+                  <p class="text-xs text-slate-500" dir="rtl">${item.he} (${item.tr})</p>
+                </div>
+              </div>
+              <button onclick="speakText('${item.word}')" class="bg-white p-2 rounded-full shadow text-sm">🔊</button>
+            </div>
+
+            <div class="flex items-center gap-1.5 mt-1">
+              <button onclick="checkCSound('${item.word}', 'k')" class="en-font flex-1 py-1.5 rounded-xl font-bold text-sm border-2 transition ${chosen === 'k' && isSolved ? 'bg-sky-600 text-white border-sky-700' : 'bg-white hover:bg-sky-50 border-sky-200 text-sky-800'}">/k/</button>
+              <button onclick="checkCSound('${item.word}', 's')" class="en-font flex-1 py-1.5 rounded-xl font-bold text-sm border-2 transition ${chosen === 's' && isSolved ? 'bg-rose-600 text-white border-rose-700' : 'bg-white hover:bg-rose-50 border-rose-200 text-rose-800'}">/s/</button>
+              ${item.both ? `<button onclick="checkCSound('${item.word}', 's / k')" class="en-font flex-1 py-1.5 rounded-xl font-bold text-xs border-2 transition ${chosen === 's / k' && isSolved ? 'bg-purple-600 text-white border-purple-700' : 'bg-white hover:bg-purple-50 border-purple-300 text-purple-800'}">/s/ + /k/</button>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Populate /k/ and /s/ columns
+      const colK = document.getElementById('colK');
+      const colS = document.getElementById('colS');
+      colK.innerHTML = '';
+      colS.innerHTML = '';
+      cWordsData.forEach(item => {
+        if (cSortedState[item.word] === item.ans) {
+          if (item.ans === 'k' || item.both) {
+            colK.innerHTML += `<span class="en-font bg-white px-3 py-1 rounded-xl border border-sky-300 font-bold text-sky-900 shadow-sm">${item.word} ${item.both ? '⭐' : ''}</span>`;
+          }
+          if (item.ans === 's' || item.both) {
+            colS.innerHTML += `<span class="en-font bg-white px-3 py-1 rounded-xl border border-rose-300 font-bold text-rose-900 shadow-sm">${item.word} ${item.both ? '⭐' : ''}</span>`;
+          }
+        }
+      });
+
+      // 2. Exercise 2: CH Pyramid
+      const pyramidContainer = document.getElementById('chPyramidRows');
+      pyramidContainer.innerHTML = chPyramidData.map(row => `
+        <div onclick="speakText('${row.word}')" class="cursor-pointer ${row.width} bg-white hover:bg-amber-100 border-2 border-amber-400 rounded-xl py-2 px-4 shadow-sm flex items-center justify-between transition">
+          <span class="text-2xl">${row.em}</span>
+          <span class="en-font text-2xl font-bold text-slate-800 tracking-wide">${row.html}</span>
+          <span class="text-xs font-bold text-amber-800" dir="rtl">${row.he}</span>
+        </div>
+      `).join('');
+
+      // 3. Exercise 2: Coloring Palette & Tasks
+      const palBox = document.getElementById('colorPalette');
+      palBox.innerHTML = paletteColors.map(c => {
+        const active = selectedBrushColor === c.id ? 'ring-4 ring-slate-800 scale-110' : 'opacity-80 hover:opacity-100';
+        return `
+          <button onclick="selectBrush('${c.id}')" class="flex items-center gap-2 px-4 py-2 rounded-full border-2 font-bold text-sm transition ${active}" style="background-color: ${c.hex}; color: ${c.id === 'brown' ? '#fff' : '#1e293b'}; border-color: #334155;">
+            <span>🖌️</span>
+            <span class="en-font capitalize">${c.en}</span>
+            <span class="text-xs">(${c.he})</span>
+          </button>
+        `;
+      }).join('');
+
+      const tasksGrid = document.getElementById('coloringTasksGrid');
+      tasksGrid.innerHTML = coloringTasks.map(t => {
+        const appliedColorId = coloredItemsState[t.item];
+        const colorObj = paletteColors.find(c => c.id === appliedColorId);
+        const cardBg = colorObj ? colorObj.bgClass : 'bg-white border-slate-300';
+        return `
+          <div onclick="applyColorToItem('${t.item}', '${t.targetColor}', '${t.sentence}')" class="cursor-pointer p-4 rounded-2xl border-4 transition flex items-center justify-between shadow-sm hover:shadow-md ${cardBg}">
+            <div class="flex items-center gap-3">
+              <span class="text-5xl p-2 rounded-2xl bg-white/80 shadow-inner">${t.em}</span>
+              <div>
+                <p class="en-font text-lg font-bold text-slate-900">${t.num}. ${t.sentence}</p>
+                <p class="text-xs text-slate-600" dir="rtl">${t.he} ${appliedColorId === t.targetColor ? '✅' : '🎨 לחצי לצביעה'}</p>
+              </div>
+            </div>
+            <button onclick="event.stopPropagation(); speakText('${t.sentence}')" class="bg-white/90 hover:bg-white p-2.5 rounded-full shadow text-base">🔊</button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function checkCSound(word, picked) {
+      const item = cWordsData.find(x => x.word === word);
+      if (!item) return;
+      speakText(word);
+      if (picked === item.ans) {
+        if (cSortedState[word] !== item.ans) addStars(1);
+        cSortedState[word] = picked;
+        renderPhonicsSection();
+      } else {
+        playDing(false);
+      }
+    }
+
+    function resetCSortGame() {
+      cSortedState = {};
+      renderPhonicsSection();
+    }
+
+    function selectBrush(colorId) {
+      selectedBrushColor = colorId;
+      speakText(colorId);
+      renderPhonicsSection();
+    }
+
+    function applyColorToItem(itemName, targetColor, sentence) {
+      const fb = document.getElementById('coloringFeedback');
+      if (selectedBrushColor === targetColor) {
+        if (coloredItemsState[itemName] !== targetColor) addStars(1);
+        coloredItemsState[itemName] = selectedBrushColor;
+        speakText(sentence);
+        fb.textContent = `🎨 נהדר! "${sentence}" (+1 כוכב)`;
+        fb.className = 'mt-4 font-bold text-center text-lg text-emerald-600';
+        renderPhonicsSection();
+      } else {
+        playDing(false);
+        const needed = paletteColors.find(c => c.id === targetColor);
+        fb.textContent = `אופס! ההוראה מבקשת לצבוע ב-${needed.en} (${needed.he}). בחרי במברשת המתאימה למעלה!`;
+        fb.className = 'mt-4 font-bold text-center text-lg text-rose-600';
+      }
+    }
+
+    function resetColoringGame() {
+      coloredItemsState = {};
+      document.getElementById('coloringFeedback').textContent = '';
+      renderPhonicsSection();
+    }
+
+    // --- SECTION 4: DAYS OF THE WEEK ---
     function renderDays() {
       const container = document.getElementById('daysList');
       container.innerHTML = daysData.map((d, i) => `
@@ -576,12 +891,11 @@
               <p class="text-xs text-slate-500 mt-1">💡 ${d.tip}</p>
             </div>
           </div>
-          <button class="bg-purple-600 text-white p-3 rounded-2xl shadow hover:bg-purple-700">🔊</button>
+          <button class="bg-purple-600 text-white p-3 rounded-2xl shadow">🔊</button>
         </div>
       `).join('');
     }
 
-    // --- DAYS MINI GAME ---
     let daysStep = 0;
     function initDaysGame() {
       daysStep = 0;
@@ -622,7 +936,7 @@
       });
     }
 
-    // --- TRACING CANVAS (Letters & Full "I want..." Sentences) ---
+    // --- SECTION 5: TRACING CANVAS ---
     let canvas, ctx, painting = false;
     function initCanvas() {
       canvas = document.getElementById('traceCanvas');
@@ -666,6 +980,12 @@
       const sel = document.getElementById('traceLetterSelect');
       if (mode === 'letters') {
         sel.innerHTML = alphabetData.map(a => `<option value="${a.l}">${a.l} ${a.l.toLowerCase()} - ${a.name}</option>`).join('');
+      } else if (mode === 'ch_c') {
+        const words = [
+          ...chPyramidData.map(x => ({ val: x.word, label: `${x.word} (${x.he})` })),
+          ...cWordsData.map(x => ({ val: x.word, label: `${x.word} (${x.he})` }))
+        ];
+        sel.innerHTML = words.map(w => `<option value="${w.val}">${w.label}</option>`).join('');
       } else {
         const sentences = foodData.map(f => ({
           val: `I want ${f.en}.`,
@@ -686,7 +1006,6 @@
       const val = document.getElementById('traceLetterSelect').value || 'A';
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw notebook lines
       ctx.strokeStyle = '#93c5fd';
       ctx.lineWidth = 2;
       [50, 190].forEach(y => { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke(); });
@@ -702,6 +1021,9 @@
       if (mode === 'letters') {
         ctx.font = 'bold 145px Fredoka, sans-serif';
         ctx.fillText(`${val}   ${val.toLowerCase()}`, canvas.width / 2, 185);
+      } else if (mode === 'ch_c') {
+        ctx.font = 'bold 105px Fredoka, sans-serif';
+        ctx.fillText(val, canvas.width / 2, 180);
       } else {
         ctx.font = 'bold 68px Fredoka, sans-serif';
         ctx.fillText(val, canvas.width / 2, 175);
@@ -714,36 +1036,52 @@
       speakText(val.replace('.', ''));
     }
 
-    // --- QUIZ (Includes Alphabet, Days, and Food Sentences!) ---
+    // --- SECTION 6: QUIZ ---
     function loadQuizQuestion() {
       const box = document.getElementById('quizBox');
-      const rand = Math.random();
+      const r = Math.random();
 
-      if (rand < 0.4) {
-        // Food / "I want" question
+      if (r < 0.35) {
+        // C sound question (/k/ vs /s/)
+        const pool = cWordsData.filter(x => !x.both);
+        const correct = pool[Math.floor(Math.random() * pool.length)];
+        box.innerHTML = `
+          <div class="bg-teal-50 p-6 rounded-2xl border-2 border-teal-200">
+            <p class="text-lg text-slate-600 mb-2">איזה צליל עושה האות <strong>C</strong> במילה:</p>
+            <div class="flex items-center justify-center gap-3">
+              <span class="text-5xl">${correct.em}</span>
+              <h3 class="en-font text-4xl font-bold text-teal-950" dir="ltr">${correct.html}</h3>
+              <button onclick="speakText('${correct.word}')" class="bg-teal-200 p-3 rounded-full text-xl">🔊</button>
+            </div>
+            <p class="text-sm text-slate-500 mt-2">${correct.he}</p>
+          </div>
+          <div class="grid grid-cols-2 gap-4" dir="ltr">
+            <button onclick="checkQuizAnswer(this, 'k', '${correct.ans}', '${correct.word}')" class="en-font bg-white hover:bg-sky-100 border-2 border-slate-300 font-bold text-2xl py-4 rounded-2xl">/k/ (ק')</button>
+            <button onclick="checkQuizAnswer(this, 's', '${correct.ans}', '${correct.word}')" class="en-font bg-white hover:bg-rose-100 border-2 border-slate-300 font-bold text-2xl py-4 rounded-2xl">/s/ (ס')</button>
+          </div>
+        `;
+      } else if (r < 0.7) {
+        // Food / CH words question
         const correct = foodData[Math.floor(Math.random() * foodData.length)];
-        const verb = verbsData[Math.floor(Math.random() * verbsData.length)];
         const options = [correct, ...foodData.filter(f => f.en !== correct.en).sort(() => Math.random() - 0.5).slice(0, 3)].sort(() => Math.random() - 0.5);
-
         box.innerHTML = `
           <div class="bg-orange-50 p-6 rounded-2xl border-2 border-orange-200">
-            <p class="text-lg text-slate-600 mb-2">איך אומרים באנגלית:</p>
-            <h3 class="text-3xl font-bold text-orange-900 mb-2">"${verb.he} ${correct.he}" ${correct.em}</h3>
-            <p class="en-font text-2xl font-bold text-sky-700" dir="ltr">${verb.en} _____.</p>
+            <p class="text-lg text-slate-600 mb-2">השלימי את המשפט של מקס:</p>
+            <h3 class="text-3xl font-bold text-orange-900 mb-2">"מקס אוכל ${correct.he}" ${correct.em}</h3>
+            <p class="en-font text-2xl font-bold text-indigo-700" dir="ltr">Max is eating _____.</p>
           </div>
           <div class="grid grid-cols-2 gap-3" dir="ltr">
             ${options.map(o => `
-              <button onclick="checkQuizAnswer(this, '${o.en}', '${correct.en}', '${verb.en} ${o.en}')" class="en-font bg-white hover:bg-orange-100 border-2 border-slate-300 font-bold text-xl py-4 rounded-2xl shadow-sm transition">
-                ${verb.en} ${o.en}
+              <button onclick="checkQuizAnswer(this, '${o.en}', '${correct.en}', 'Max is eating ${o.en}')" class="en-font bg-white hover:bg-orange-100 border-2 border-slate-300 font-bold text-xl py-4 rounded-2xl">
+                ${o.en}
               </button>
             `).join('')}
           </div>
         `;
-      } else if (rand < 0.7) {
-        // Days of the week question
+      } else {
+        // Days of the week
         const correct = daysData[Math.floor(Math.random() * daysData.length)];
         const options = [correct, ...daysData.filter(d => d.en !== correct.en).sort(() => Math.random() - 0.5).slice(0, 3)].sort(() => Math.random() - 0.5);
-
         box.innerHTML = `
           <div class="bg-sky-50 p-6 rounded-2xl border-2 border-sky-200">
             <p class="text-lg text-slate-600 mb-2">איך אומרים באנגלית:</p>
@@ -751,34 +1089,8 @@
           </div>
           <div class="grid grid-cols-2 gap-3" dir="ltr">
             ${options.map(o => `
-              <button onclick="checkQuizAnswer(this, '${o.en}', '${correct.en}', '${o.en}')" class="en-font bg-white hover:bg-sky-100 border-2 border-slate-300 font-bold text-xl py-4 rounded-2xl shadow-sm transition">
+              <button onclick="checkQuizAnswer(this, '${o.en}', '${correct.en}', '${o.en}')" class="en-font bg-white hover:bg-sky-100 border-2 border-slate-300 font-bold text-xl py-4 rounded-2xl">
                 ${o.en}
-              </button>
-            `).join('')}
-          </div>
-        `;
-      } else {
-        // Alphabet question
-        const correct = alphabetData[Math.floor(Math.random() * alphabetData.length)];
-        const word = Math.random() > 0.5 ? correct.w1 : correct.w2;
-        const options = [correct, ...alphabetData.filter(a => a.l !== correct.l).sort(() => Math.random() - 0.5).slice(0, 3)].sort(() => Math.random() - 0.5);
-
-        box.innerHTML = `
-          <div class="bg-amber-50 p-6 rounded-2xl border-2 border-amber-200">
-            <p class="text-lg text-slate-600 mb-2">באיזו אות מתחילה המילה:</p>
-            <div class="flex items-center justify-center gap-3">
-              <span class="text-5xl">${word.em}</span>
-              <div class="text-right">
-                <h3 class="en-font text-3xl font-bold text-slate-800">${word.en}</h3>
-                <p class="text-slate-500">${word.he} (${word.tr})</p>
-              </div>
-              <button onclick="speakText('${word.en}')" class="bg-amber-300 p-3 rounded-full text-xl">🔊</button>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" dir="ltr">
-            ${options.map(o => `
-              <button onclick="checkQuizAnswer(this, '${o.l}', '${correct.l}', '${o.l}')" class="en-font bg-white hover:bg-amber-100 border-2 border-slate-300 font-bold text-2xl py-4 rounded-2xl shadow-sm transition">
-                ${o.l} ${o.l.toLowerCase()}
               </button>
             `).join('')}
           </div>
@@ -800,29 +1112,28 @@
 
     // --- TABS ---
     function switchTab(tab) {
-      ['abc', 'food', 'days', 'trace', 'quiz'].forEach(t => {
+      ['abc', 'food', 'phonics', 'days', 'trace', 'quiz'].forEach(t => {
         document.getElementById(`sec-${t}`).classList.toggle('hidden', t !== tab);
         const btn = document.getElementById(`tab-${t}`);
         if (t === tab) {
-          btn.className = 'tab-btn bg-sky-600 text-white font-bold px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2';
+          btn.className = 'tab-btn bg-sky-600 text-white font-bold px-4 py-2.5 rounded-2xl shadow-md transition flex items-center gap-1.5';
         } else {
-          btn.className = 'tab-btn bg-white text-slate-700 hover:bg-sky-50 font-bold px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2';
+          btn.className = 'tab-btn bg-white text-slate-700 hover:bg-sky-50 font-bold px-4 py-2.5 rounded-2xl shadow-md transition flex items-center gap-1.5';
         }
       });
       if (tab === 'trace') setTimeout(drawTraceGuide, 50);
     }
 
-    // Init
+    // Init All
     renderAlphabet();
     renderLetterDetail();
     renderFoodSection();
-    loadFoodFillTask();
+    renderPhonicsSection();
     renderDays();
     initDaysGame();
     initCanvas();
     loadQuizQuestion();
-    // Open directly on the new Food tab so you can see it right away!
-    switchTab('food');
+    switchTab('phonics');
   </script>
 </body>
 </html>
